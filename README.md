@@ -104,12 +104,18 @@ accessible via SSH for the parallel jobs to be run on them.
 4) Run parallel extraction scripts to extract features.  On our 68 hyper thread setup,
    each script takes on the order of 12 hours (i.e., overnight-ish) to process 407 events.
    These script will max out CPUs on all of the hosts listed in nodefile
-    1) bin/parallel_cavity_extraction.bash
-    2) bin/parallel_trip_extraction.bash
+   
+    1) For cavity model feature extraction run
+    
+      > bin/parallel_cavity_extraction.bash
+    
+    2) For trip model feature extraction run:
+    
+      > bin/parallel_trip_extraction.bash
 
 5) Review the results
-    1) All logs are written to log/<cavity|trip>_<timestamp> including individual tsfresh
-       job output, and the GNU parallel jobs_log (<cavity|trip>_<timestamp>_jobs.log)
+    1) All logs are written to log/\<cavity\|trip\>\_\<timestamp\> including individual tsfresh
+       job output, and the GNU parallel jobs_log (\<cavity\|trip\>\_\<timestamp\>\_jobs.log)
     2) The results of each tsfresh job is written to the extracted/ directory.
        Each event will have to files per parallel_*_extraction.bash script, a *_X.csv
        for the extracted features and a *_y.csv for the matching label info.  Should
