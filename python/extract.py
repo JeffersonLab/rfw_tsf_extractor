@@ -160,7 +160,7 @@ if __name__ == "__main__":
                              column_sort="Time",
                              impute_function=impute,
                              default_fc_parameters=extraction_settings,
-                            disable_progressbar=True,
+                             disable_progressbar=True,
                              n_jobs=tsf_jobs
                             )
 
@@ -207,9 +207,23 @@ if __name__ == "__main__":
                 cavity_file = os.path.join(event_dir, file)
                 break
 
+        # Construct a dictionary for mapping cavity-specific waveform names to generic waveform names.  Used to
+        # rename the dataframe columns into a generic set that can be analyzed by tsfresh regardless of which cavity
+        # is the one to fault.
+        waveforms = ('IMES', 'QMES', 'GMES', 'PMES', 'IASK', 'QASK', 'GASK', 'PASK', 'CRFP', 'CRFPP', 'CRRP', 'CRRPP',
+                     'GLDE', 'PLDE', 'DETA2', 'CFQE2', 'DFQES')
+        waveform_mapper = {str(epics_cav) + "WFS" + s: s for s in waveforms}
+        fault_columns = list(waveform_mapper.keys())
+        fault_columns.insert(0, 'id')
+        fault_columns.insert(0, 'Time')
+
         # Read in the file.  Since only one label/event, assign single ID number for use by tsfresh
         waveforms_df = pd.read_table(cavity_file, sep='\t')
         waveforms_df['id'] = pd.Series(1, index=waveforms_df.index)
+
+        # Rename the columns to get rid of the cavity specific info.  Not needed since the model will generalize to all
+        # cavities.
+        waveforms_df = waveforms_df.rename(columns=waveform_mapper)
 
         # Grab the label and include identifying info
         y = pd.DataFrame({'zone': zone, 'time': timestamp, 'label': labeled_df.fault})
@@ -221,7 +235,7 @@ if __name__ == "__main__":
                             column_sort="Time",
                             impute_function=impute,
                             default_fc_parameters=extraction_settings,
-#                            disable_progressbar=True,
+                            disable_progressbar=True,
                             n_jobs=tsf_jobs
                             )
 
