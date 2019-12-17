@@ -27,12 +27,16 @@ feature extraction.
 
 ## Directory/File Overview
 
-bin - for executable files
-extracted - for files containing extracted features
-labeled-examples - for files containing labeled examples
-nodefile - a file that controls which remote nodes parallel will try to run jobs
-python - contains python code for performing feature extraction
-waveform-data - contains the harvested waveform data on which extraction is performed
+| Folder/File | Description |
+| ----------- | ----------- |
+| bin/ | for executable files |
+| extracted/ | for files containing extracted features |
+| labeled-examples/ | for files containing labeled examples |
+| nodefile | a file that controls which remote nodes parallel will try to run jobs |
+| python/ | contains python code for performing feature extraction |
+| waveform-data/ | contains the harvested waveform data on which extraction is performed |
+| venv/ | Directory that is created to contain Python virtual environment. |
+| requirements.txt | pip requirements for creating python virtual environment |
 
 ## Setup
 
