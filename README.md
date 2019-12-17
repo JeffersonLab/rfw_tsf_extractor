@@ -12,10 +12,10 @@ labeled-examples/processed directory.
 Feature extraction is performed in parallel (thanks to GNU parallel) across the nodes
 specified in the nodelist file.  The feature extraction work is broken into two main
 pieces, the extraction needed for the cavity model and the extraction needed for the
-fault type (a.k.a., "trip") model, as represented by the two parallel_*.bash scripts
-in bin/.  Each parallel_*.bash script ultimately calls python/extract.py on each 
+fault type (a.k.a., "trip") model, as represented by the two parallel\_*.bash scripts
+in bin/.  Each parallel\_*.bash script ultimately calls python/extract.py on each 
 file in labeled-examples/processed.  These jobs are meant to be run by parallel, so
-tsfresh.extract_features is called with n_jobs=1 (i.e., no internal parallelization).
+tsfresh.extract_features is called with n\_jobs=1 (i.e., no internal parallelization).
 
 To use this template, simply make a copy of the app somewhere with sufficient
 storage and accessible by the hosts that will be running feature extraction code.
