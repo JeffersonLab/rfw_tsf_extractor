@@ -84,11 +84,13 @@ accessible via SSH for the parallel jobs to be run on them.
     packages listed in requirements.txt.  Please install a similar python interpreter
     and run the following commands in a bash shell.
 
+    ```bash
     cd /path/to/rfw_tsf_extractor
     /path/to/python -m venv venv
     source venv/bin/activate
     pip install -r requirements.txt
     deactivate
+    ```
 
     Now you have a suitable python environment.  Any scripts that deal with python will
     be loading this environment before launching code.
@@ -99,7 +101,7 @@ accessible via SSH for the parallel jobs to be run on them.
        into a directory of files under labeled_examples/processed, which contain a single
        event/label and are named for the event (<zone>-<timestamp>.tsv).
        
-       bin/process_raw_label_files.bash
+       > bin/process_raw_label_files.bash
 
        Note that this script performs several ancillary functions besides actually
        processing the raw files.
@@ -130,7 +132,7 @@ accessible via SSH for the parallel jobs to be run on them.
     1) All logs are written to log/\<cavity\|trip\>\_\<timestamp\> including individual tsfresh
        job output, and the GNU parallel jobs_log (\<cavity\|trip\>\_\<timestamp\>\_jobs.log)
     2) The results of each tsfresh job is written to the extracted/ directory.
-       Each event will have to files per parallel_*_extraction.bash script, a *_X.csv
+       Each event will have two files per parallel_*_extraction.bash script, a *_X.csv
        for the extracted features and a *_y.csv for the matching label info.  Should
        the tsfresh job encounter an error, then no CSV file will be written.  Examine
        the GNU parallel jobs log for exit status of each job to verify that all of the
