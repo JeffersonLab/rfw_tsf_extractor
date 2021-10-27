@@ -5,7 +5,7 @@ certifi==2019.11.28
 chardet==3.0.4
 Click==7.0
 cloudpickle==1.2.2
-dask==2.8.1
+dask==2021.10.0
 decorator==4.4.1
 defusedxml==0.6.0
 distributed==2.8.1
